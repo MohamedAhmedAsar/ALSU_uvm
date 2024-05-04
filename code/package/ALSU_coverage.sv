@@ -3,7 +3,7 @@ package ALSU_coverage_pkg;
 
     import uvm_pkg::*;
     `include "uvm_macros.svh"
-
+    import ALSU_seq_item_pkg::*;
     class ALSU_coverage extends uvm_component;
         `uvm_component_utils(ALSU_coverage)
         uvm_analysis_export #(ALSU_seq_item) cov_export;

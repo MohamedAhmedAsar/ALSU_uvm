@@ -2,6 +2,7 @@ package ALSU_driver_pkg;
     
     import uvm_pkg::*;
     `include "uvm_macros.svh"
+    import ALSU_seq_item_pkg::*;
 
     class ALSU_driver extends uvm_driver #(ALSU_seq_item);
         `uvm_component_utils(ALSU_driver)

@@ -1,6 +1,9 @@
 package ALSU_scoreboard_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
+
+    import ALSU_seq_item_pkg::*;
+
     class ALSU_scoreboard extends uvm_scoreboard;
         parameter INPUT_PRIORITY = "A";
         parameter FULL_ADDER = "ON" ;

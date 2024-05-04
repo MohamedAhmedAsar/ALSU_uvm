@@ -2,7 +2,13 @@ package ALSU_agent_pkg;
 
     import uvm_pkg::*;
     `include "uvm_macros.svh"
-    
+
+    import ALSU_sequencer_pkg::*;
+    import ALSU_driver_pkg::*;
+    import ALSU_monitor_pkg::*;
+    import ALSU_config_pkg::*;
+    import ALSU_seq_item_pkg::*;
+
     class ALSU_agent extends uvm_agent;
 
         `uvm_component_utils(ALSU_agent)

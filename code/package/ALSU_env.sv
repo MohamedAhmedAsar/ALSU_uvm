@@ -1,6 +1,9 @@
 package ALSU_env_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
+    import ALSU_agent_pkg::*;
+    import ALSU_scoreboard_pkg::*;
+    import ALSU_coverage_pkg::*;
 
     class ALSU_env extends uvm_env;
         `uvm_component_utils(ALSU_env)

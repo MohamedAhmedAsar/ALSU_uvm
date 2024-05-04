@@ -1,7 +1,7 @@
 package ALSU_main_sequence_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
-
+    import ALSU_seq_item_pkg::*;
     class ALSU_main_sequence extends uvm_sequence # (ALSU_seq_item);
         `uvm_object_utils(ALSU_main_sequence);
         ALSU_seq_item seq_item;

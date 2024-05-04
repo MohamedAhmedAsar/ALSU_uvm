@@ -1,6 +1,13 @@
 package ALSU_test_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
+        
+    import ALSU_env_pkg::*;
+    import ALSU_config_pkg::*;
+    import ALSU_main_sequence_pkg::*;
+    import ALSU_reset_sequence_pkg::*;
+
+    
     
     class ALSU_test extends uvm_test;
         `uvm_component_utils(ALSU_test)

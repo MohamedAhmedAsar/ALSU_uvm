@@ -1,4 +1,4 @@
-interface alsu_if(input bit clk);
+interface ALSU_if(input bit clk);
 
     parameter INPUT_PRIORITY = "A";
     parameter FULL_ADDER = "ON";

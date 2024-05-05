@@ -12,7 +12,7 @@ class ALSU_config extends uvm_object;
 
 
     //  Group: Constraints
-    virtual alsu_if alsu_vif;
+    virtual ALSU_if alsu_vif;
 
     //  Group: Functions
 

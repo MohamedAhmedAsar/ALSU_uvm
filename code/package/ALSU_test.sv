@@ -28,10 +28,10 @@ package ALSU_test_pkg;
             main_seq=ALSU_main_sequence::type_id::create("main_seq",this);
             reset_seq=ALSU_reset_sequence::type_id::create("reset_seq",this);
 
-            if(!uvm_config_db#(virtual alsu_if)::get(this, "", "CFG", alsu_cfg.alsu_vif))
+            if(!uvm_config_db#(virtual ALSU_if)::get(this, "", "INTF", alsu_cfg.alsu_vif))
             `uvm_fatal("build_phase", "error");
             
-            uvm_config_db#(ALSU_config)::set(this, "*", "CGF", alsu_cfg);
+            uvm_config_db#(ALSU_config)::set(this, "*", "CFG", alsu_cfg);
             
 
         endfunction: build_phase

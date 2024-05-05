@@ -19,7 +19,7 @@ package ALSU_driver_pkg;
             super.run_phase(phase);
             forever begin
                 stim_seq_item = ALSU_seq_item::type_id::create("stim_seq_item");
-                seq_item_port.get_nest_item(stim_seq_item);
+                seq_item_port.get_next_item(stim_seq_item);
                 alsu_vif.cin=stim_seq_item.cin;
                 alsu_vif.red_op_A=stim_seq_item.red_op_A;
                 alsu_vif.red_op_B=stim_seq_item.red_op_B;

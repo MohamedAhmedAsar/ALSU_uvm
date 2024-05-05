@@ -37,12 +37,13 @@ package ALSU_scoreboard_pkg;
             super.run_phase(phase);
             forever begin
                 sb_fifo.get(seq_item_sb);
-                ref_model(seq_item_sb)
-                if (seq_item_sb.out !== ALSU_out_ref && seq_item_sb.leds != alsu_leds_ref) begin
-                    uvm_error("uvm_test_top", $sformatf("Comparison failed! Transaction received by the DUT differs from the reference output: %0s", seq_item_sb.convert2string(), alsu_out_ref));
+                ref_model(seq_item_sb);
+                if(seq_item_sb.out !== alsu_out_ref && seq_item_sb.leds != alsu_leds_ref) begin
+                    `uvm_error("uvm_test_top", $sformatf("Comparison failed! Transaction received by the DUT differs from the reference output: %0s", seq_item_sb.convert2string(), alsu_out_ref));
                     error_count++;
-                end else begin
-                    uvm_info("uvm_test_top", $sformatf("Correct ALSU output: %s ", seq_item_sb.convert2string()), UVM_HIGH);
+                end 
+                else begin
+                    `uvm_info("uvm_test_top", $sformatf("Correct ALSU output: %s ", seq_item_sb.convert2string()), UVM_HIGH);
                     correct_count++;
                 end
             end

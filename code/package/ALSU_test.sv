@@ -13,7 +13,7 @@ package ALSU_test_pkg;
         `uvm_component_utils(ALSU_test)
 
         ALSU_env env;
-        ALSU_config alu_cgf;
+        ALSU_config alsu_cgf;
         ALSU_main_sequence main_seq;
         ALSU_reset_sequence reset_seq;
 
@@ -21,17 +21,17 @@ package ALSU_test_pkg;
             super.new(name,parent);
         endfunction: new
 
-        function void ALSU_test::build_phase(uvm_phase phase);
+        function void build_phase(uvm_phase phase);
             super.build_phase(phase);
             env=ALSU_env::type_id::create("env",this);
-            alu_cgf=ALSU_config::type_id::create("alu_cgf",this);
+            alsu_cgf=ALSU_config::type_id::create("alsu_cgf",this);
             main_seq=ALSU_main_sequence::type_id::create("main_seq",this);
             reset_seq=ALSU_reset_sequence::type_id::create("reset_seq",this);
 
-            if(!uvm_config_db#(virtual ALSU_if)::get(this, "", "INTF", alsu_cfg.alsu_vif))
+            if(!uvm_config_db#(virtual ALSU_if)::get(this, "", "INTF", alsu_cgf.alsu_vif))
             `uvm_fatal("build_phase", "error");
             
-            uvm_config_db#(ALSU_config)::set(this, "*", "CFG", alsu_cfg);
+            uvm_config_db#(ALSU_config)::set(this, "*", "CFG", alsu_cgf);
             
 
         endfunction: build_phase
@@ -39,13 +39,13 @@ package ALSU_test_pkg;
         task run_phase(uvm_phase phase);
             super.run_phase(phase);
             phase.raise_objection(this);
-            `uvm_info("run_phase", "reset asserted", UVM_low)
+            `uvm_info("run_phase", "reset asserted", UVM_LOW)
             reset_seq.start(env.agt.sqr);
-            `uvm_info("run_phase", "reset asserted", UVM_low)
+            `uvm_info("run_phase", "reset asserted", UVM_LOW)
 
-            `uvm_info("run_phase", "stimulus Genration Started", UVM_low)
+            `uvm_info("run_phase", "stimulus Genration Started", UVM_LOW)
             main_seq.start(env.agt.sqr);
-            `uvm_info("run_phase", "stimulus Genration ended", UVM_low)
+            `uvm_info("run_phase", "stimulus Genration ended", UVM_LOW)
             phase.drop_objection(this);
         endtask: run_phase
         

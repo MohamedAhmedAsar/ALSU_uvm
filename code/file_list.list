@@ -1,4 +1,3 @@
-ALSU_uvm/code/module/ALSU_if.sv
 ALSU_uvm/code/package/ALSU_config.sv
 ALSU_uvm/code/package/ALSU_seq_item.sv
 ALSU_uvm/code/package/ALSU_sequencer.sv

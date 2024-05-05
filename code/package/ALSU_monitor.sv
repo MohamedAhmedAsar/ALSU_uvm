@@ -34,7 +34,7 @@ package ALSU_monitor_pkg;
                 rsp_seq_item.leds = alsu_vif.leds;
                 rsp_seq_item.out = alsu_vif.out;
                 mon_ap.write(rsp_seq_item);
-                uvm_info("run_phase", rsp_seq_item.convert2string(), UVM_HIGH);
+                `uvm_info("run_phase", rsp_seq_item.convert2string(), UVM_HIGH);
             end
         endtask
     endclass

@@ -1,16 +1,11 @@
 package ALSU_seq_item_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
-    
-    //!no import here
-    //  Class: ALSU_seq_item
-    //
     parameter VALID_OP = 6;
     typedef enum bit [2:0] {OR, XOR, ADD, MULT, SHIFT, ROTATE, INVALID_6, INVALID_7} opcode_e;
     typedef enum {MAXPOS=3, ZERO = 0, MAXNEG=-4} reg_e;
 
     class ALSU_seq_item extends uvm_sequence_item;
-        typedef ALSU_seq_item this_type_t;
         `uvm_object_utils(ALSU_seq_item);
     
         //  Group: Variables
@@ -101,7 +96,7 @@ package ALSU_seq_item_pkg;
         // extern function void do_unpack();
         
     endclass: ALSU_seq_item
-    
+endpackage  
     /*----------------------------------------------------------------------------*/
     /*  Constraints                                                               */
     /*----------------------------------------------------------------------------*/

@@ -24,18 +24,18 @@ output reg [5:0] out;
 */
 
 //!input
-assign clk=alsu_if.clk
-assign rst=alsu_if.rst
-assign cin=alsu_if.cin
-assign red_op_A=alsu_if.red_op_A
-assign red_op_B=alsu_if.red_op_B
-assign bypass_A=alsu_if.bypass_A
-assign bypass_B=alsu_if.bypass_B
-assign direction=alsu_if.direction
-assign serial_in=alsu_if.serial_in
-assign opcode=alsu_if.opcode
-assign A=alsu_if.A
-assign B=alsu_if.B
+assign clk=alsu_if.clk;
+assign rst=alsu_if.rst;
+assign cin=alsu_if.cin;
+assign red_op_A=alsu_if.red_op_A;
+assign red_op_B=alsu_if.red_op_B;
+assign bypass_A=alsu_if.bypass_A;
+assign bypass_B=alsu_if.bypass_B;
+assign direction=alsu_if.direction;
+assign serial_in=alsu_if.serial_in;
+assign opcode=alsu_if.opcode;
+assign A=alsu_if.A;
+assign B=alsu_if.B;
 
 //!output
 assign alsu_if.out=out;

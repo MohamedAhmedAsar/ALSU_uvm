@@ -11,9 +11,9 @@ package ALSU_reset_sequence_pkg;
         endfunction
     
         task body;
-            seq_item = shift_reg_seq_item::type_id::create("seq_item");
+            seq_item = ALSU_seq_item::type_id::create("seq_item");
             start_item(seq_item);
-            seq_item.reset = 1;
+            seq_item.rst = 1;
             seq_item.serial_in = 0;
             seq_item.direction = 0;
             seq_item.opcode = opcode_e'(0);

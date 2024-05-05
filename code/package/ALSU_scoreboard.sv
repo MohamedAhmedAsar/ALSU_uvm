@@ -50,65 +50,56 @@ package ALSU_scoreboard_pkg;
         endtask
 
         task ref_model(ALSU_seq_item seq_item_chk);
-            @(posedge seq_item_chk.clk)
-            if (seq_item_chk.rst) begin
-                alsu_out_ref = 0;
-                alsu_leds_ref = 0;
+            if(seq_item_chk.rst)begin
+                alsu_out_ref=0;
+                alsu_leds_ref=0;
+            end
+            else if(seq_item_chk.opcode==6 || seq_item_chk.opcode==7 ||((seq_item_chk.opcode!=0  || seq_item_chk.opcode!=1)&& (seq_item_chk.red_op_A || seq_item_chk.red_op_B)))begin
+                alsu_leds_ref=~alsu_leds_ref;
+                alsu_out_ref=0;
             end
             else begin
                 case (seq_item_chk.opcode)
-                    3'h0: begin
-                        if (seq_item_chk.red_op_A && seq_item_chk.red_op_B) begin
-                            alsu_out_ref <= (INPUT_PRIORITY == "A") ? seq_item_chk.A : seq_item_chk.B;
-                        end else if (seq_item_chk.red_op_A) begin
-                            alsu_out_ref <= seq_item_chk.A;
-                        end else if (seq_item_chk.red_op_B) begin
-                            alsu_out_ref <= seq_item_chk.B;
-                        end else begin
-                            alsu_out_ref <= 0;
+                    0:
+                    if (seq_item_chk.red_op_A &&seq_item_chk.red_op_B) begin
+                        if (INPUT_PRIORITY=="A") begin
+                            alsu_out_ref={5'b0,|seq_item_chk.A};
+                        end
+                        else if (INPUT_PRIORITY=="B")begin
+                            alsu_out_ref={5'b0,|seq_item_chk.B};
                         end
                     end
-                    3'h1: begin
-                        if (seq_item_chk.red_op_A && seq_item_chk.red_op_B) begin
-                            alsu_out_ref <= (INPUT_PRIORITY == "A") ? seq_item_chk.A +seq_item_chk.B : seq_item_chk.B + seq_item_chk.A;
-                        end else if (seq_item_chk.red_op_A) begin
-                            alsu_out_ref <= seq_item_chk.A + seq_item_chk.B;
-                        end else if (seq_item_chk.red_op_B) begin
-                            alsu_out_ref <= seq_item_chk.A + seq_item_chk.B;
-                        end else begin
-                            alsu_out_ref <= 0;
+                    else if (seq_item_chk.red_op_A)alsu_out_ref={5'b0,|seq_item_chk.A};
+                    else if (seq_item_chk.red_op_B)alsu_out_ref={5'b0,|seq_item_chk.B};
+                    else alsu_out_ref={3'b0,seq_item_chk.A|seq_item_chk.B};
+                    1:
+                        if (seq_item_chk.red_op_A &&seq_item_chk.red_op_B) begin
+                            if (INPUT_PRIORITY=="A") begin
+                                alsu_out_ref={5'b0,^seq_item_chk.A};
+                            end
+                            else if (INPUT_PRIORITY=="B")begin
+                                alsu_out_ref={5'b0,^seq_item_chk.B};
+                            end
                         end
-                    end
-                    3'h2: begin
-                        if (FULL_ADDER == "ON") begin
-                            alsu_out_ref <= seq_item_chk.A + seq_item_chk.B + seq_item_chk.cin;
-                        end else begin
-                            alsu_out_ref <= seq_item_chk.A + seq_item_chk.B;
+                        else if (seq_item_chk.red_op_A)alsu_out_ref={5'b0,^seq_item_chk.A};
+                        else if (seq_item_chk.red_op_B)alsu_out_ref={5'b0,^seq_item_chk.B};
+                        else alsu_out_ref={3'b0,seq_item_chk.A^seq_item_chk.B};
+                    2:
+                        if (FULL_ADDER=="ON") begin
+                            alsu_out_ref={2'b0,seq_item_chk.A+seq_item_chk.B+seq_item_chk.cin};
+                        end 
+                        else begin
+                            alsu_out_ref={2'b0,seq_item_chk.A+seq_item_chk.B};
                         end
-                    end
-                    3'h3: begin
-                        alsu_out_ref <= seq_item_chk.A * seq_item_chk.B;
-                    end
-                    3'h4: begin
-                        alsu_out_ref <= (seq_item_chk.direction) ? {seq_item_chk.serial_in, seq_item_chk.out[5:1]} : {alsu_out_ref[4:0], seq_item_chk.serial_in};
-                    end
-                    3'h5: begin
-                        if (seq_item_chk.direction) begin
-                            alsu_out_ref <= {seq_item_chk.out[4:0], seq_item_chk.out[5]};
-                        end else begin
-                            alsu_out_ref <= {seq_item_chk.out[1], seq_item_chk.out[5:1]};
-                        end
-                    end
-                endcase
-                if (((seq_item_chk.red_op_A | seq_item_chk.red_op_B) & (seq_item_chk.opcode[1] | seq_item_chk.opcode[2])) | (seq_item_chk.opcode[1] & seq_item_chk.opcode[2])) begin
-                    alsu_leds_ref = ~ alsu_leds_ref;
-                end
-                else begin
-                    alsu_leds_ref = 0;
-                end
+                    3: alsu_out_ref=seq_item_chk.A*seq_item_chk.B;
+                    4: //123   9 --->239
+                        if(seq_item_chk.direction) alsu_out_ref={alsu_out_ref[4:0],seq_item_chk.serial_in};
+                        else alsu_out_ref={seq_item_chk.serial_in,alsu_out_ref[5:1]};
+                    5: //123 -->231
+                        if(seq_item_chk.direction)alsu_out_ref={alsu_out_ref[4:0],alsu_out_ref[5]};
+                        else alsu_out_ref={alsu_out_ref[0],alsu_out_ref[5:1]};
+            endcase
             end
-                
-
         endtask
         
         function void report_phase(uvm_phase phase);

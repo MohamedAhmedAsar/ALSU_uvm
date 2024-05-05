@@ -1,7 +1,7 @@
 package ALSU_seq_item_pkg;
-
     import uvm_pkg::*;
     `include "uvm_macros.svh"
+    
     //!no import here
     //  Class: ALSU_seq_item
     //
@@ -76,13 +76,13 @@ package ALSU_seq_item_pkg;
         function string convert2string();
             return $sformatf("%s rst=%0d, cin=%0d, red_op_A=%0d, red_op_B=%0d, bypass_A=%0d, bypass_B=%0d, direction=%0s, serial_in =%0d,A=%0d, B=%0d,opcode=%0d,out=%0d,leds=%0d"
                 ,super.convert2string(),rst, cin, red_op_A, red_op_B, bypass_A, bypass_B, direction, serial_in ,A, B,opcode,out,leds
-                )
+                );
         endfunction
 
         function string convert2string_stimulus();
             return $sformatf("rst=%0d, cin=%0d, red_op_A=%0d, red_op_B=%0d, bypass_A=%0d, bypass_B=%0d, direction=%0s, serial_in =%0d,A=%0d, B=%0d,opcode=%0d",
                 rst, cin, red_op_A, red_op_B, bypass_A, bypass_B, direction, serial_in ,A, B,opcode
-                )
+                );
         endfunction
 
         //  Function: do_copy
@@ -101,7 +101,6 @@ package ALSU_seq_item_pkg;
         // extern function void do_unpack();
         
     endclass: ALSU_seq_item
-    
     
     /*----------------------------------------------------------------------------*/
     /*  Constraints                                                               */

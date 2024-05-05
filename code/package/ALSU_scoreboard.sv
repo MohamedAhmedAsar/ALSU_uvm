@@ -39,7 +39,7 @@ package ALSU_scoreboard_pkg;
                 sb_fifo.get(seq_item_sb);
                 ref_model(seq_item_sb);
                 if(seq_item_sb.out !== alsu_out_ref && seq_item_sb.leds != alsu_leds_ref) begin
-                    `uvm_error("uvm_test_top", $sformatf("Comparison failed! Transaction received by the DUT differs from the reference output: %0s", seq_item_sb.convert2string(), alsu_out_ref));
+                    `uvm_error("uvm_test_top", $sformatf("Comparison failed! Transaction received by the DUT differs from the reference output: %0s \n while the ref_out: out_exp =%0d and leds_exp =%0d", seq_item_sb.convert2string(),alsu_out_ref,alsu_leds_ref));
                     error_count++;
                 end 
                 else begin
@@ -50,6 +50,7 @@ package ALSU_scoreboard_pkg;
         endtask
 
         task ref_model(ALSU_seq_item seq_item_chk);
+            @(posedge seq_item_chk.clk)
             if (seq_item_chk.rst) begin
                 alsu_out_ref = 0;
                 alsu_leds_ref = 0;

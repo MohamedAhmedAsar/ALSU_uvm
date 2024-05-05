@@ -40,11 +40,11 @@ package ALSU_test_pkg;
             super.run_phase(phase);
             phase.raise_objection(this);
             `uvm_info("run_phase", "reset asserted", UVM_LOW)
-            reset_seq.start(env.agt.sqr);
+            reset_seq.start(env.agt.squr);
             `uvm_info("run_phase", "reset asserted", UVM_LOW)
 
             `uvm_info("run_phase", "stimulus Genration Started", UVM_LOW)
-            main_seq.start(env.agt.sqr);
+            main_seq.start(env.agt.squr);
             `uvm_info("run_phase", "stimulus Genration ended", UVM_LOW)
             phase.drop_objection(this);
         endtask: run_phase

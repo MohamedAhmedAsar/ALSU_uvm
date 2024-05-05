@@ -9,16 +9,16 @@ package ALSU_seq_item_pkg;
         `uvm_object_utils(ALSU_seq_item);
     
         //  Group: Variables
-        rand logic clk, rst, cin, red_op_A, red_op_B, bypass_A, bypass_B, direction, serial_in; 
-        rand logic [2:0] A, B; 
+        rand bit clk, rst, cin, red_op_A, red_op_B, bypass_A, bypass_B, direction, serial_in; 
+        rand bit [2:0] A, B; 
         rand opcode_e opcode;
         rand opcode_e opcode_valid [VALID_OP];
         rand reg_e enum_ext_A, enum_ext_B;
-        rand logic [3:0] A_rem_values, B_rem_values;
+        rand bit [3:0] A_rem_values, B_rem_values;
         bit [2:0] walking_ones[]='{3'b001, 3'b010, 3'b100};
         rand bit [2:0] walking_ones_t, walking_ones_f;
-        logic [5:0]out;
-        logic [15:0]leds;
+        bit [5:0]out;
+        bit [15:0]leds;
         
     
         //  Group: Constraints

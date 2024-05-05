@@ -2,7 +2,7 @@ package ALSU_reset_sequence_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
     import  ALSU_seq_item_pkg::*;
-    class ALSU_reset_sequence extends uvm_sequence # (ALSU_seq_item);
+    class ALSU_reset_sequence extends uvm_sequence#(ALSU_seq_item);
         `uvm_object_utils(ALSU_reset_sequence);
         ALSU_seq_item seq_item;
     

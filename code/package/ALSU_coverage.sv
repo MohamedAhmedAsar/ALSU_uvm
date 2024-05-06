@@ -14,24 +14,24 @@ package ALSU_coverage_pkg;
         ALSU_seq_item seq_item_cov;
 
     covergroup cvr_grp;
-            A_cvp_values_ADD_MULT : coverpoint seq_item_cov.A;
-            // {
-            //     bins A_data_e = {0};
-            //     bins A_data_max = {3};
-            //     bins A_data_min = {-4};
-            //     bins A_data_default = default;
-            // }
+            A_cvp_values_ADD_MULT : coverpoint seq_item_cov.A
+            {
+                bins A_data_e = {0};
+                bins A_data_max = {3};
+                bins A_data_min = {-4};
+                bins A_data_default = default;
+            }
 
             // A_cvp_values_RED : coverpoint seq_item_cov.A iff (seq_item_cov.red_op_A) {
             //     bins A_walkingones[] = {3'b001, 3'b010, 3'b100};
             // }
 
-            // B_cvp_values_ADD_MULT : coverpoint seq_item_cov.B {
-            //     bins B_data_0 = {0};
-            //     bins B_data_max = {MAXPOS};
-            //     bins B_data_min = {MAXNEG};
-            //     bins B_data_default = default;
-            // }
+            B_cvp_values_ADD_MULT : coverpoint seq_item_cov.B {
+                bins B_data_0 = {0};
+                bins B_data_max = {3};
+                bins B_data_min = {-4};
+                bins B_data_default = default;
+            }
 
             // B_cvp_values_RED : coverpoint seq_item_cov.B iff (seq_item_cov.red_op_B & !seq_item_cov.red_op_A) {
             //     bins B_walkingones[] = {3'b001, 3'b010, 3'b100};

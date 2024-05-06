@@ -15,6 +15,7 @@ package ALSU_main_sequence_pkg;
                 seq_item = ALSU_seq_item::type_id::create("seq_item");
                 start_item(seq_item);
                 assert(seq_item.randomize());
+                seq_item.rst=0;
                 finish_item(seq_item);
             end
         endtask

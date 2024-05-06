@@ -40,7 +40,6 @@ package ALSU_agent_pkg;
         
 
         function void connect_phase(uvm_phase phase);
-            super.connect_phase(phase);
         
             drv.alsu_vif=alsu_cfg.alsu_vif;
             mon.alsu_vif=alsu_cfg.alsu_vif;

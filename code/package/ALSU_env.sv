@@ -12,7 +12,7 @@ package ALSU_env_pkg;
         ALSU_scoreboard sb;
         ALSU_coverage cov;
 
-        function new(string name = "ALSU_env", uvm_component parent);
+        function new(string name = "ALSU_env", uvm_component parent=null);
             super.new(name, parent);
         endfunction: new
         
@@ -27,10 +27,10 @@ package ALSU_env_pkg;
         
 
         function void connect_phase(uvm_phase phase);
-            super.connect_phase(phase);
+            // super.connect_phase(phase);
         
             agt.agt_ap.connect(sb.sb_export);
-            agt.agt_ap.connect(cov.cov_export);
+            agt.agt_ap.connect(cov.cov_export);//!!!!!!!!!!!!!!
 
         endfunction: connect_phase
         

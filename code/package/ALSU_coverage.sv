@@ -7,6 +7,7 @@ package ALSU_coverage_pkg;
     parameter VALID_OP = 6;
     typedef enum bit [2:0] {OR, XOR, ADD, MULT, SHIFT, ROTATE, INVALID_6, INVALID_7} opcode_e;
     typedef enum {MAXPOS=3, ZERO = 0, MAXNEG=-4} reg_e;
+    int x=0;
     class ALSU_coverage extends uvm_component;
         `uvm_component_utils(ALSU_coverage)
         uvm_analysis_export #(ALSU_seq_item) cov_export;
@@ -116,6 +117,10 @@ package ALSU_coverage_pkg;
             super.run_phase(phase);
             forever begin
                 cov_fifo.get(seq_item_cov);
+                x++;
+                `uvm_info("run_phase", $sformatf("sample num %0d",x), UVM_LOW)
+                `uvm_info("run_phase", $sformatf("\n out=%0d",seq_item_cov.out), UVM_LOW)
+                `uvm_info("run_phase", $sformatf("\n B=%0d",seq_item_cov.B), UVM_LOW)
                 cvr_grp.sample();
             end
         endtask

@@ -24,6 +24,8 @@ package ALSU_monitor_pkg;
                 @(negedge alsu_vif.clk);
                 rsp_seq_item.opcode = opcode_e'(alsu_vif.opcode);//!what is this ?
                 // rsp_seq_item.mode = mode('alsu_vif.mode);
+                rsp_seq_item.A=alsu_vif.A;
+                rsp_seq_item.B=alsu_vif.B;
                 rsp_seq_item.cin = alsu_vif.cin;
                 rsp_seq_item.red_op_A = alsu_vif.red_op_A;
                 rsp_seq_item.red_op_B = alsu_vif.red_op_B;

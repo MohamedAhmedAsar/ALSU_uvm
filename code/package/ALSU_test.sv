@@ -37,11 +37,11 @@ package ALSU_test_pkg;
             
             uvm_config_db#(ALSU_config)::set(this, "*", "CFG", alsu_cgf);
             
-
         endfunction: build_phase
         
         task run_phase(uvm_phase phase);
             super.run_phase(phase);
+            set_type_override_by_type(ALSU_seq_item::get_type(), ALSU_seq_item_valid_invalid::get_type());
             phase.raise_objection(this);
             `uvm_info("run_phase", "reset asserted", UVM_LOW)
             reset_seq.start(env.agt.squr);

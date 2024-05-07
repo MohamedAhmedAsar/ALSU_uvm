@@ -9,7 +9,7 @@ package ALSU_seq_item_valid_invalid_pkg;
 
         constraint valid_cases_only {
             opcode inside {[OR:ROTATE]};  
-            if (opcode == OR || opcode == XOR) {
+            if (opcode != OR || opcode != XOR) {
                 red_op_A == 0;
                 red_op_B == 0;
             }

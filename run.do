@@ -1,5 +1,5 @@
 vlib work
-vlog -f code/file_list.list -mfcu +cover
+vlog -f ALSU_UVM/code/file_list.list -mfcu +cover
 vsim -voptargs=+acc work.TOP -classdebug -uvmcontrol=all
 #coverage save fiforpt.ucdb -onexit -du work.top
 #add wave *

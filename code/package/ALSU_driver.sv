@@ -3,6 +3,7 @@ package ALSU_driver_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
     import ALSU_seq_item_pkg::*;
+    import ALSU_seq_item_valid_invalid_pkg::*;
 
     class ALSU_driver extends uvm_driver #(ALSU_seq_item);
         `uvm_component_utils(ALSU_driver)
@@ -14,6 +15,14 @@ package ALSU_driver_pkg;
             super.new(name,parent);
         endfunction
 
+        // function void ALSU_driver::build_phase(uvm_phase phase);
+        //     /*  note: Do not call super.build_phase() from any class that is extended from an UVM base class!  */
+        //     /*  For more information see UVM Cookbook v1800.2 p.503  */
+        //     super.build_phase(phase);
+        //     set_type_override_by_type(ALSU_seq_item::get_type(), ALSU_seq_item_valid_invalid::get_type());
+            
+        // endfunction: build_phase
+        
 
         task run_phase(uvm_phase phase);
             super.run_phase(phase);

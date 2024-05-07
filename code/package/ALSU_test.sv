@@ -6,6 +6,9 @@ package ALSU_test_pkg;
     import ALSU_config_pkg::*;
     import ALSU_main_sequence_pkg::*;
     import ALSU_reset_sequence_pkg::*;
+    import ALSU_seq_item_valid_invalid_pkg::*;
+    import ALSU_seq_item_pkg::*;
+
 
     
     
@@ -23,6 +26,7 @@ package ALSU_test_pkg;
 
         function void build_phase(uvm_phase phase);
             super.build_phase(phase);
+            set_type_override_by_type(ALSU_seq_item::get_type(), ALSU_seq_item_valid_invalid::get_type());
             env=ALSU_env::type_id::create("env",this);
             alsu_cgf=ALSU_config::type_id::create("alsu_cgf",this);
             main_seq=ALSU_main_sequence::type_id::create("main_seq",this);

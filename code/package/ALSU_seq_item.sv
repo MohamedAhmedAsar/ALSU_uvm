@@ -8,7 +8,7 @@ package ALSU_seq_item_pkg;
     class ALSU_seq_item extends uvm_sequence_item;
         `uvm_object_utils(ALSU_seq_item);
     
-        //  Group: Variables
+
         bit clk;
         rand bit  rst, cin, red_op_A, red_op_B, bypass_A, bypass_B, direction, serial_in; 
         rand bit signed [2:0] A, B; 
@@ -22,7 +22,7 @@ package ALSU_seq_item_pkg;
         bit [15:0]leds;
         
     
-        //  Group: Constraints
+
         constraint rst_low{
             rst dist{1:=2,0:=98};
         }
@@ -33,25 +33,31 @@ package ALSU_seq_item_pkg;
             B_rem_values != MAXPOS || 0  || MAXNEG;
             walking_ones_t inside {walking_ones};
             !(walking_ones_f inside {walking_ones});
-        
-            if (opcode == OR || opcode == XOR) {
-                if (red_op_A == 1) {
-                    A dist {walking_ones_t:= 88, walking_ones_f:= 20};
-                } else if (red_op_B == 1) {
-                    B dist {walking_ones_t:= 88, walking_ones_f:= 20};
-                }
-            } else {
-                red_op_A dist {1:= 20, 0:= 80};
-                red_op_B dist {1:= 20, 0:= 80};
-                if (opcode == ADD || opcode == MULT) {
-                    A dist {enum_ext_A:= 80, A_rem_values:= 20};
-                    B dist {enum_ext_B:= 80, B_rem_values:= 20};
-                }
-            }
+
+
+             //! valid and in valid i will copy it to ALSU_seq_item_valid_invalid
+            // if (opcode == OR || opcode == XOR) {
+            //     if (red_op_A == 1) {
+            //         A dist {walking_ones_t:= 88, walking_ones_f:= 20};
+            //     } else if (red_op_B == 1) {
+            //         B dist {walking_ones_t:= 88, walking_ones_f:= 20};
+            //     }
+            // } else {
+            //     red_op_A dist {1:= 20, 0:= 80};
+            //     red_op_B dist {1:= 20, 0:= 80};
+            //     if (opcode == ADD || opcode == MULT) {
+            //         A dist {enum_ext_A:= 80, A_rem_values:= 20};
+            //         B dist {enum_ext_B:= 80, B_rem_values:= 20};
+            //     }
+            // }
         }
-        constraint opcode_con {
-            opcode dist {[OR:ROTATE]:= 80, [INVALID_6:INVALID_7]:= 20};
-        }
+
+
+        //! valid and in valid i will copy it to ALSU_seq_item_valid_invalid
+        //valid and in valid
+        // constraint opcode_con {
+        //     opcode dist {[OR:ROTATE]:= 80, [INVALID_6:INVALID_7]:= 20};
+        // }
         
         constraint opcode_seq_con {
             foreach (opcode_valid[i])
@@ -62,13 +68,15 @@ package ALSU_seq_item_pkg;
                 }
             }
         }
+
+
         constraint bypass_con {
             bypass_A dist {1:=2, 0:=98};
             bypass_B dist {1:=2, 0:=98};
         }
-        //  Group: Functions
+
     
-        //  Constructor: new
+
         function new(string name = "ALSU_seq_item");
             super.new(name);
         endfunction: new
@@ -85,32 +93,7 @@ package ALSU_seq_item_pkg;
                 );
         endfunction
 
-        //  Function: do_copy
-        // extern function void do_copy(uvm_object rhs);
-        //  Function: do_compare
-        // extern function bit do_compare(uvm_object rhs, uvm_comparer comparer);
-        //  Function: convert2string
-        // extern function string convert2string();
-        //  Function: do_print
-        // extern function void do_print(uvm_printer printer);
-        //  Function: do_record
-        // extern function void do_record(uvm_recorder recorder);
-        //  Function: do_pack
-        // extern function void do_pack();
-        //  Function: do_unpack
-        // extern function void do_unpack();
         
     endclass: ALSU_seq_item
 endpackage  
-    /*----------------------------------------------------------------------------*/
-    /*  Constraints                                                               */
-    /*----------------------------------------------------------------------------*/
-    
-    
-    
-    
-    /*----------------------------------------------------------------------------*/
-    /*  Functions                                                                 */
-    /*----------------------------------------------------------------------------*/
-    
-    
+
